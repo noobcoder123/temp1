@@ -1,0 +1,65 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="shop-category-data">
+
+  <script>
+    (function(){
+
+      class ShopCategoryData extends Polymer.Element {
+
+        static get is() { return 'shop-category-data';}
+
+        static get properties() { return {
+
+
+          items: {
+              type: Array,
+              notify: true
+          }
+        }}
+
+        ready()
+        {
+          super.ready();
+          var request = new XMLHttpRequest();
+          request.open("GET", "data/jsonData.json", false);
+          request.send(null)
+          var my_JSON_object = JSON.parse(request.responseText);
+          this.items = my_JSON_object;
+          console.log(this.items);
+        }
+        _computeData()
+        {
+
+
+            console.log(my_JSON_object);
+            return my_JSON_object;
+
+        }
+
+        _disabledChanged()
+        {
+          console.log(this.categories);
+        }
+
+        }
+
+
+
+
+      customElements.define(ShopCategoryData.is, ShopCategoryData);
+
+    })();
+  </script>
+
+</dom-module>

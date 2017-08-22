@@ -1,0 +1,212 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+
+<link rel="import" href="recipe-detail.html">
+<link rel="import" href="recipe-list.html">
+<link rel="import" href="app-icons.html">
+
+<dom-module id="recipe-app">
+
+  <template>
+
+    <style>
+        	   * { margin: 0; padding: 0; }
+	   p { padding: 10px; }
+	   .left { position: absolute; left: 0; top: 0; width: 30%;height: 100%; 
+             background-image: url('../data/images/back.jpg');
+        }
+	   .right { position: absolute; right: 0; top: 0; width: 70%;height: 100%; background-color:antiquewhite;}
+        
+        
+        
+        select {
+    
+    background-color: transparent;
+              border:0px;
+   outline:0px;
+                margin-left: 10%;
+                margin-top: 20px;
+    margin-right: 10px;
+    width: 70%;
+}
+        
+        .grey_color {
+  color: #ccc;
+  font-size: 14px;
+}
+        .user_image{
+            height:50px;
+            width: 56px;
+        }
+        
+        .user{
+          
+            margin-left: 10%;
+        }
+        .personal_info, .personal_info_part2{
+/*            display: inline-block;*/
+            
+            clear: left;
+            margin-left: 10%;
+            width: 100%;align-items: stretch; /* Default */
+    justify-content: space-between;
+        }
+        
+        .personal_info_part2 p{
+            
+            display: inline-table;
+            vertical-align: top;
+/*
+            
+*/
+            color: white;
+        }
+        
+        
+       
+    </style>
+      
+      
+       <div class="left">
+           
+           <form>
+               <div class="user">
+               <img class="user_image" style="float:left;" src="../data/images/user-icon1.png" alt="Smiley face">
+               <select class="grey_color">
+                  <option value="volvo">Volvo</option>
+                  <option value="saab">Saab</option>
+                  <option value="mercedes">Mercedes</option>
+                  <option value="audi">Audi</option>
+                </select>
+                </div>  
+
+               <div class="personal_info">
+                    <p>Date of birth: </p>
+                   <p>Gender: </p>
+               </div>
+               
+               <div class="personal_info_part2">
+                    <p>Mobile app</p>
+                    <p>Biometric</p>
+                   <p>KYC</p>
+                   <p>Cheque</p>
+                   <p>Dormant</p>
+               
+               </div>
+            </form>
+    </div>
+
+    <div class="right">
+        <p>Right Half</p>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+    </div>
+  </template>
+
+  <script>
+
+  class RecipeApp extends Polymer.Element {
+    
+    static get is() { return 'recipe-app'; }
+
+   
+    static get properties() { return {
+
+      recipes: Object,
+
+      _route: Object,
+
+      _subRoute: Object,
+
+      _pageData: {
+        type: Object,
+        observer: '_pageDataChanged'
+      },
+
+      _selectedPage: String,
+
+      _idData: Object,
+    
+      _scrollPositionMap: {
+        type: Object,
+        value: function() {
+          return {};
+        }
+      }
+    }}
+
+    attached() {
+      this.async(function() {
+        if (!this._route.path) {
+          this.set('_route.path', '/home');
+        }
+      });
+    }
+
+    _getRecipe() {
+      if (this.recipes && this._idData && this._idData.id) {
+        for (var i = 0; i < this.recipes.length; ++i) {
+          var r = this.recipes[i];
+          if (r.id === this._idData.id) {
+            return r;
+          }
+        }
+      }
+      return null;
+    }
+
+    _drawerSelected() {
+      if (!this.$.drawer.persistent) this.$.drawer.close();
+    }
+
+    /**
+     * Preserves the document scroll position, so 
+     * it can be restored when returning to a page.
+     */
+    _pageDataChanged(pageData, oldPageData) {
+      var map = this._scrollPositionMap;
+     
+      if (oldPageData != null && oldPageData.page != null) {
+        map[oldPageData.page] = window.pageYOffset;
+      }
+      this._selectedPage = pageData.page;
+      if (map[pageData.page] != null) {
+        Polymer.AppLayout.scroll({ top: map[pageData.page], behavior: 'silent' });
+      } else if (this.isAttached) {
+        Polymer.AppLayout.scroll({ top: 0, behavior: 'silent' });
+      }
+    }
+
+  }
+      
+       customElements.define(RecipeApp.is, RecipeApp);
+
+  </script>
+
+</dom-module>
